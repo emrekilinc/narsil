@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  body: MyText
+  logo: MyString
+  is_active: false
+  order: 1
+  primary_color: MyString
+
+two:
+  name: MyString
+  body: MyText
+  logo: MyString
+  is_active: false
+  order: 1
+  primary_color: MyString
