@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  logged_in_at: 2013-12-19 01:52:15
+  ip: MyString
+  user_id: 1
+
+two:
+  logged_in_at: 2013-12-19 01:52:15
+  ip: MyString
+  user_id: 1
