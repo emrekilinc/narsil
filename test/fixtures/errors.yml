@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  project_code: MyString
+  message: MyText
+  url: MyString
+  where: MyString
+  occured_at: 2013-12-19 01:45:39
+  browser: MyString
+  ip: MyString
+  backtrace: MyString
+
+two:
+  project_code: MyString
+  message: MyText
+  url: MyString
+  where: MyString
+  occured_at: 2013-12-19 01:45:39
+  browser: MyString
+  ip: MyString
+  backtrace: MyString
