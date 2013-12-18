@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218233245) do
+ActiveRecord::Schema.define(version: 20131218234953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "errors", force: true do |t|
+    t.string   "project_code"
+    t.text     "message"
+    t.string   "url"
+    t.string   "where"
+    t.datetime "occured_at"
+    t.string   "browser"
+    t.string   "ip"
+    t.string   "backtrace"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -26,6 +39,26 @@ ActiveRecord::Schema.define(version: 20131218233245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.text     "bio"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.string   "membership_type"
+    t.string   "full_name"
+    t.string   "avatar"
+    t.boolean  "is_closed"
+    t.datetime "closed_at"
+    t.string   "remember_token"
+    t.string   "last_logout_at"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.datetime "last_activity_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
