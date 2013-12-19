@@ -12,6 +12,7 @@
       <div class="tabs-left">
         <ul class="nav nav-tabs nav-stacked">
           <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+          <li><a href="#browser" data-toggle="tab">Browser</a></li>
           <li><a href="#backtrace" data-toggle="tab">Backtrace</a></li>
         </ul>
       </div>
@@ -44,12 +45,72 @@
                 <td><%= @error.where %></td>
               </tr>
               <tr>
-                <td><strong>Browser :</strong></td>
-                <td><%= @error.browser %></td>
+                <td><strong>Format :</strong></td>
+                <td><%= @error.format %></td>
+              </tr>
+              <tr>
+                <td><strong>Method :</strong></td>
+                <td><%= @error.method %></td>
+              </tr>
+              <tr>
+                <td><strong>Headers :</strong></td>
+                <td><%= @error.headers %></td>
+              </tr>
+              <tr>
+                <td><strong>Port :</strong></td>
+                <td><%= @error.headers %></td>
+              </tr>
+              <tr>
+                <td><strong>Protocol :</strong></td>
+                <td><%= @error.headers %></td>
               </tr>
               <tr>
                 <td><strong>IP :</strong></td>
                 <td><%= @error.ip %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--/ .tab-pane -->
+
+        <div class="tab-pane" id="browser">
+          <table class="table table-bordered table-hover table-striped">
+            <tbody>
+              <tr>
+                <td><strong>Browser :</strong></td>
+                <td><%= @error.browser %></td>
+              </tr>
+              <tr>
+                <td><strong>Browser Version :</strong></td>
+                <td><%= @error.version %></td>
+              </tr>
+              <tr>
+                <td><strong>Platform :</strong></td>
+                <td><%= @error.platform %></td>
+              </tr>
+              <tr>
+                <td><strong>Bot? :</strong></td>
+                <td>
+                  <% if @error.bot %>
+                    <span class="label label-success">YES</span>
+                  <% else %>
+                    <span class="label label-default">NO</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Is Modern Browser? :</strong></td>
+                <td>
+                  <% if @error.modern %>
+                    <span class="label label-success">YES</span>
+                  <% else %>
+                    <span class="label label-danger">NO</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Metadata :</strong></td>
+                <td><%= @error.browser_meta %></td>
               </tr>
             </tbody>
           </table>
