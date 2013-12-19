@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       version: browser.version,
       platform: browser.platform,
       bot: browser.bot?,
-      is_modern: browser.mordern?,
+      is_modern: browser.modern?,
       browser_meta: browser.meta
     }
     NarsilWrapper.log(create_params)
