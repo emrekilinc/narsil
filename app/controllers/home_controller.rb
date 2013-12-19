@@ -1,8 +1,10 @@
 class HomeController < ApplicationController
   def index
-    @req = request
-    @bro = browser
+    asd
     respond_to :html
+  end
+
+  def settings
   end
 
   def error

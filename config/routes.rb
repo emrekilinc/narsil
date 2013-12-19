@@ -20,7 +20,8 @@ Narsil::Application.routes.draw do
       post 'error' => 'errors#create'
     end
   end
-  
+
+  get 'settings' => 'home#settings'
   get 'somethings-not-right' => 'home#error', as: 'error'
   root 'home#index'
 end
