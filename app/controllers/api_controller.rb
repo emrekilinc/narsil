@@ -1,4 +1,5 @@
 class ApiController < ApplicationController
+
   ## GET : '/api/keys'
   def keys
     @keys = ApiKey.all.order("created_at desc")
@@ -21,4 +22,5 @@ class ApiController < ApplicationController
   ## GET : '/api/docs'
   def docs
   end
+
 end
