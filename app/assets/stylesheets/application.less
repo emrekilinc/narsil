@@ -1,5 +1,10 @@
+@import "font-awesome.css";
+@import "twitter/bootstrap";
+
+@import "app/assets/stylesheets/config";
+
 body {
-  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   margin: 0;
   padding: 0;
   text-size-adjust:none;
@@ -7,4 +12,45 @@ body {
   -webkit-text-size-adjust:none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+
+body.login {
+  background: @base;
+  color: @light;
+
+  .login-container {
+    width: 350px;
+    margin: 0 auto;
+    position: absolute;
+    height: 384px;
+    top: 50%;
+    left: 50%;
+    margin-top: -192px;
+    margin-left: -174px;
+
+    img.logo {
+      width: 300px;
+      margin: 0 auto 50px auto;
+      display: block;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .input-container {
+      margin-bottom: 15px;
+    }
+    
+    p.copy {
+      color: @copy;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+  }
 }

@@ -39,6 +39,8 @@ GEM
     commonjs (0.2.7)
     erubis (2.7.0)
     execjs (2.0.2)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -50,6 +52,11 @@ GEM
     json (1.8.1)
     less (2.4.0)
       commonjs (~> 0.2.7)
+    less-rails (2.4.2)
+      actionpack (>= 3.1)
+      less (~> 2.4.0)
+    less-rails-bootstrap (3.0.6)
+      less-rails (~> 2.4.2)
     libv8 (3.11.8.13)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -112,9 +119,11 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   coffee-rails (~> 4.0.0)
+  font-awesome-rails
   jbuilder (~> 1.2)
   jquery-rails
   less
+  less-rails-bootstrap
   pg
   rails (= 4.0.0)
   sdoc
