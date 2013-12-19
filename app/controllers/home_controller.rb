@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    asd
     respond_to :html
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219070418) do
+ActiveRecord::Schema.define(version: 20131219072544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20131219070418) do
     t.text     "backtrace"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "format"
+    t.string   "method"
+    t.text     "headers"
+    t.string   "port"
+    t.string   "protocol"
+    t.string   "version"
+    t.string   "platform"
+    t.boolean  "bot"
+    t.boolean  "is_modern"
+    t.text     "browser_meta"
   end
 
   create_table "projects", force: true do |t|
