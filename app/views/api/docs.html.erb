@@ -9,7 +9,7 @@
       <div>
         <ul class="nav nav-stacked">
           <li><a href="#rest-api">RESTful API</a></li>
-          <li><a href="#grid-intro-2">Continue</a></li>
+          <li><a href="#wrappers">Wrappers</a></li>
         </ul>
 
       </div>
@@ -42,35 +42,61 @@
         <h4>Rate Limits</h4>
         <p>There are no rate limits of using the API right now. <strong>So please do not give away the API key to our customers or anyone.</strong></p>
       </div>
-      <h3>Media Queries</h3>
-      <div class="highlight"><pre><code class="css"><span class="c">/* Extra small devices (phones, less than 768px) */</span>
-      <span class="c">/* No media query since this is the default in Bootstrap */</span>
 
-      <span class="c">/* Small devices (tablets, 768px and up) */</span>
-      <span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="k">@screen-sm-min</span><span class="o">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+      <h4>Testing</h4>
+      <p>To test it with <code>curl</code> you can use the command below.</p>
 
-      <span class="c">/* Medium devices (desktops, 992px and up) */</span>
-      <span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="k">@screen-md-min</span><span class="o">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+      <div class="highlight"><pre><code>curl -X POST -d "project_code=3dkonut&message=errormessg&occured_at=25/07/2013" http://localhost:5555/api/error -H 'Authorization: Token token="1847d0607e9daa5457988faba2f545dd"'</code></pre></div>
 
-      <span class="c">/* Large devices (large desktops, 1200px and up) */</span>
-      <span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="k">@screen-lg-min</span><span class="o">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
-      </code></pre></div>
+      <h3 id="wrappers">Wrappers</h3>
+      <p>To use Narsil API in your applications, we've developed API wrappers for Ruby and .NET. Feel free to write a wrapper in any language/framework you want. Here are the basic codes to consume the Narsil API.</p>
+      
+      <h4>Ruby (on Rails)</h4>
+      <div class="highlight"><pre><code class="ruby">require 'net/http'
+require 'uri'
 
-      <h3 id="grid-intro-2">Introduction</h3>
-      <p>Grid systems are used for creating page layouts through a series of rows and columns that house your content. Here's how the Bootstrap grid system works:</p>
-      <ul>
-        <li>Rows must be placed within a <code>.container</code> for proper alignment and padding.</li>
-        <li>Use rows to create horizontal groups of columns.</li>
-        <li>Content should be placed within columns, and only columns may be immediate children of rows.</li>
-        <li>Predefined grid classes like <code>.row</code> and <code>.col-xs-4</code> are available for quickly making grid layouts. LESS mixins can also be used for more semantic layouts.</li>
-        <li>Columns create gutters (gaps between column content) via <code>padding</code>. That padding is offset in rows for the first and last column via negative margin on <code>.row</code>s.</li>
-        <li>Grid columns are created by specifying the number of twelve available columns you wish to span. For example, three equal columns would use three <code>.col-xs-4</code>.</li>
-      </ul>
-      <p>Look to the examples for applying these principles to your code.</p>
-      <div class="bs-callout bs-callout-info">
-        <h4>Grids and full-width layouts</h4>
-        <p>Folks looking to create fully fluid layouts (meaning your site stretches the entire width of the viewport) must wrap their grid content in a containing element with <code>padding: 0 15px;</code> to offset the <code>margin: 0 -15px;</code> used on <code>.row</code>s.</p>
-      </div>
+class NarsilWrapper
+  ACCESS_TOKEN = "c55112c8a981bbf118649a7a8a700e71"
+
+  def self.log(create_params)
+    uri = URI.parse("http://dashboard.2nworks.com/api/error")
+    http = Net::HTTP.new(uri.host, uri.port)
+    token = ActionController::HttpAuthentication::Token.encode_credentials(ACCESS_TOKEN)
+    
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request["Authorization"] = token
+
+    request.set_form_data({
+      "project_code" => create_params[:project_code],
+      "message" => create_params[:message],
+      "url" => create_params[:url],
+      "where" => create_params[:where],
+      "occured_at" => create_params[:occured_at],
+      "browser" => create_params[:browser],
+      "ip" => create_params[:ip],
+      "backtrace" => create_params[:backtrace]
+    })
+
+    response = http.request(request)
+  end
+end</code></pre></div>
+    <p>To use this in your projects, create a file with the name of <code>narsil.rb</code>, and in your <code>application_controller.rb</code> file</p>
+
+          <div class="highlight"><pre><code class="ruby">rescue_from StandardError do |e|
+  create_params = {
+    project_code: PROJECT_CODE,
+    message: e.message,
+    occured_at: Time.zone.now,
+    where: e.class,
+    backtrace: e.backtrace.join("\n"),
+    url: request.url,
+    ip: request.remote_ip,
+    browser: browser.name
+  }
+  NarsilWrapper.log(create_params)
+  redirect_to error_url
+end</code></pre></div>
+
     </div>
     <!--/ .col-md-8 -->
   </div>
