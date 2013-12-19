@@ -18,11 +18,42 @@
   </head>
 
   <body class="login">
+    <% if flash[:error] %>
+      <div class="dialog dialog-danger">
+        <div class="container">
+          <%= flash[:error] %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:deactivate] %>
+      <div class="dialog dialog-info">
+        <div class="container">
+          <%= flash[:deactivate] %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <div class="dialog dialog-info">
+        <div class="container">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="dialog dialog-danger">
+        <div class="container">
+          <%= flash[:alert] %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="login-container">
       <%= image_tag("logo.png", alt: "2nWorks", class: "logo") %>
 
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" method="post" action="<%= url_for(controller: "session", action: "authenticate") %>">
         <h2 class="form-signin-heading">Please sign in</h2>
 
         <div class="input-container">
@@ -44,6 +75,8 @@
         <p class="copy">
           &copy; <%= Time.now.year %>
         </p>
+
+        <%= token_tag(nil) %>
       </form>
 
     </div> <!-- /container -->

@@ -1,5 +1,41 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  after_filter :save_current_user_if_dirty, :update_last_activity_at
+  before_filter :login_required
+  helper_method :current_user
+  helper_method :logged_in?
+
+  def current_user
+    @current_user ||= User.find_by_remember_token(cookies[:remember_token]) if cookies[:remember_token].present?
+  end
+
+  def logged_in?
+    current_user
+  end
+
+  def login_required
+    unless logged_in?
+      redirect_to login_url, alert: "You must login to continue!"
+    end
+  end
+
+  def authorize(type)
+    if type.nil?
+      redirect_to login_url if current_user.nil?
+    else
+      redirect_to login_url if current_user.nil? || current_user.membership_type != type
+    end
+  end
+
+  def check_current_user
+    redirect_to root_url if logged_in?
+  end
+
+  def update_last_activity_at
+    current_user.last_activity_at = Time.zone.now if current_user
+  end
+
+  def save_current_user_if_dirty
+    current_user.save!(validate: false) if current_user && current_user.changed?
+  end
 end

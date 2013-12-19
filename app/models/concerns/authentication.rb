@@ -81,10 +81,10 @@ module Authentication
 
     def authenticate(login, pass)    
       regex = Regexp.new(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/)
-      query = "username = ? and confirmed_at IS NOT NULL and is_closed = false"
+      query = "username = ? and is_closed = false"
 
       if regex.match(login)
-        query = "email = ? and confirmed_at IS NOT NULL and is_closed = false"
+        query = "email = ? and is_closed = false"
       end
 
       user = where(query, login.downcase).first
