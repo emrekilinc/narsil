@@ -20,4 +20,9 @@ class SessionController < ApplicationController
       redirect_to login_url
     end
   end
+
+  def logout
+    current_user.logout(cookies)
+    redirect_to login_url
+  end
 end

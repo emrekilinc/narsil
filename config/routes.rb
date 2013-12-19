@@ -3,6 +3,7 @@ require 'api_constraints'
 Narsil::Application.routes.draw do
   get 'login' => 'session#login', as: 'login'
   post 'login' => 'session#authenticate'
+  get 'logout' => 'session#logout'
 
   scope 'api' do
     get 'keys' => 'api#keys'
@@ -13,7 +14,7 @@ Narsil::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      get 'errors' => 'errors#index'
+      get 'error/index' => 'errors#index'
     end
   end
   
