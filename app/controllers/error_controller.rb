@@ -7,5 +7,7 @@ class ErrorController < ApplicationController
 
   ## GET : '/error/:id'
   def show
+    @error = Error.find(params[:id])
+    respond_to :html
   end
 end

@@ -1,0 +1,75 @@
+<div class="content">
+  <div class="page-header">
+    <a href="<%= url_for(controller: "error", action: "index") %>" class="btn btn-sm btn-info pull-right"><i class="fa fa-list"></i> Errors</a>
+    
+    <h2><span class="label label-default"><%= @error.project_name %></span> <%= @error.message %></h2>
+    <small>Occured at <%= @error.occured_at %></small>
+  </div>
+  <!--/ .page-header -->
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="tabs-left">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+          <li><a href="#backtrace" data-toggle="tab">Backtrace</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--/ .col-md-3 -->
+
+    <div class="col-md-9">
+      <div class="tab-content">
+        <div class="tab-pane active" id="general">
+          <table class="table table-bordered table-hover table-striped">
+            <tbody>
+              <tr>
+                <td><strong>Project :</strong></td>
+                <td><%= @error.project_name %></td>
+              </tr>
+              <tr>
+                <td><strong>Message :</strong></td>
+                <td><%= @error.message %></td>
+              </tr>
+              <tr>
+                <td><strong>Occured At :</strong></td>
+                <td><%= @error.occured_at %></td>
+              </tr>
+              <tr>
+                <td><strong>URL :</strong></td>
+                <td><%= @error.url %></td>
+              </tr>
+              <tr>
+                <td><strong>Where :</strong></td>
+                <td><%= @error.where %></td>
+              </tr>
+              <tr>
+                <td><strong>Browser :</strong></td>
+                <td><%= @error.browser %></td>
+              </tr>
+              <tr>
+                <td><strong>IP :</strong></td>
+                <td><%= @error.ip %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--/ .tab-pane -->
+
+        <div class="tab-pane" id="backtrace">
+          <% if @error.backtrace %>
+          <div class="highlight"><pre><code><%= @error.backtrace %></code></pre></div>
+          <% else %>
+          <div class="alert alert-info">
+            There are no backtrace information.
+          </div>
+          <% end %>
+        </div>
+        <!--/ .tab-pane -->
+      </div>
+    </div>
+    <!--/ .col-md-9 -->
+  </div>
+  <!--/ .row -->
+</div>
+<!--/ .content -->
