@@ -1,0 +1,59 @@
+<div class="content">
+  <div class="page-header">
+    <h2>API Keys</h2>
+    <small>Here you can generate API keys to use in your applications. <strong>Do not give away these keys to anyone since there are no rate limits on using the API.</strong></small>
+  </div>
+  <!--/ .page-header -->
+
+  <div class="row">
+    <div class="col-md-8">
+      <% if @keys.count > 0 %>
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
+            <th>Name</th>
+            <th>Key</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <% @keys.each do |item| %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.access_token %></td>
+              <td>
+                <%= link_to raw("<i class='fa fa-trash-o'></i>"), url_for(controller: "api", action: "destroy", id: item.id), method: :post, class: "btn btn-danger btn-sm", confirm: "Are you really sure deleting this key? Applications use these key will not be able to work!" %>
+              </td>
+            </tr>
+            <% end %>    
+          </tbody>
+        </table>
+      <% else %>
+      <div class="alert alert-info">
+        There are no API keys generated, yet.
+      </div>
+      <!--/ .alert -->
+      <% end %>
+    </div>
+    <!--/ .col-md-8 -->
+
+    <div class="col-md-4">
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert].full_messages.to_sentence %>
+        </div>
+        <!--/ .alert -->
+      <% end %>
+      <form role="form" method="post" action="<%= url_for(controller: "api", action: "create") %>">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" class="form-control" id="name" placeholder="">
+          <p class="help-block">Please enter the application name that you want to use the API with.</p>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Generate an API Key</button>
+        <%= token_tag(nil) %>
+      </form>
+    </div>
+    <!--/ .col-md-4 -->
+  </div>
+  <!--/ .row -->
+</div>
