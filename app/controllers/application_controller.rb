@@ -18,22 +18,20 @@ class ApplicationController < ActionController::Base
       backtrace: e.backtrace.join("\n"),
       url: request.url,
       ip: request.remote_ip,
-      browser: browser.name
+      browser: browser.name,
+      format: request.format,
+      method: request.method,
+      headers: request.headers,
+      port: request.port,
+      protocol: request.protocol,
+      version: browser.version,
+      platform: browser.platform,
+      bot: browser.bot?,
+      is_modern: browser.mordern?,
+      browser_meta: browser.meta
     }
     NarsilWrapper.log(create_params)
     redirect_to error_url
-
-    # request.format - The content type requested by the client.
-    # request.method - The HTTP method used for the request.
-    # request.headers - Returns a hash containing the headers associated with the request.
-    # request.port - The port number (integer) used for the request.
-    # request.protocol - Returns a string containing the protocol used plus "://", for example "http://".
-
-    # browser.version
-    # browser.platform
-    # browser.bot?
-    # browser.meta or browser.to_s - an array with several attributes
-    # browser.modern?
   end
 
   def current_user
