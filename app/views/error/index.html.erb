@@ -1,0 +1,41 @@
+<div class="content">
+  <div class="page-header">
+    <a href="<%= url_for(controller: "error", action: "index") %>" class="btn btn-sm btn-info pull-right"><i class="fa fa-refresh"></i></a>
+    
+    <h2>Errors</h2>
+    <small>Here you can find a list of all the errors occuring right now from the applications that consumes Narsil's API.</small>
+  </div>
+  <!--/ .page-header -->
+
+  <% if @errors.count > 0 %>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <th>Project</th>
+        <th>Message</th>
+        <th>Occured At</th>
+        <th class="col-md-1"></th>
+      </thead>
+      <tbody>
+        <% @errors.each do |item| %>
+        <tr>
+          <td><%= item.project_name %></td>
+          <td><%= item.message %></td>
+          <td><%= item.occured_at %></td>
+          <td>
+            <a href="<%= url_for(controller: "error", action: "show", id: item.id) %>" class="btn btn-warning"><i class="fa fa-ellipsis-h"></i></a>
+          </td>
+        </tr>
+        <% end %>    
+      </tbody>
+    </table>
+  <% else %>
+  <div class="alert alert-info">
+    There are no errors logged, yet.
+  </div>
+  <!--/ .alert -->
+  <% end %>
+
+  <%= will_paginate @errors, renderer: BootstrapPagination::Rails %>
+
+</div>
+<!--/ .content -->

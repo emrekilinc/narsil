@@ -9,6 +9,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'less-rails-bootstrap'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

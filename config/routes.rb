@@ -5,6 +5,9 @@ Narsil::Application.routes.draw do
   post 'login' => 'session#authenticate'
   get 'logout' => 'session#logout'
 
+  get 'errors' => 'error#index'
+  get 'error/:id' => 'error#show'
+
   scope 'api' do
     get 'keys' => 'api#keys'
     post 'keys/create' => 'api#create'

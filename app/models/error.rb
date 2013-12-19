@@ -3,6 +3,10 @@ class Error < ActiveRecord::Base
   validates_presence_of :message
   validates_presence_of :occured_at
 
+  def project_name
+    Project.find_by_code(self.project_code).name
+  end
+
   def create_output
     Jbuilder.encode do |json|
       json.status 200
