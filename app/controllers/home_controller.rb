@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
-    asd
+    @req = request
+    @bro = browser
     respond_to :html
   end
 

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       platform: browser.platform,
       bot: browser.bot?,
       is_modern: browser.modern?,
-      browser_meta: browser.meta
+      browser_meta: browser.user_agent
     }
     NarsilWrapper.log(create_params)
     redirect_to error_url
