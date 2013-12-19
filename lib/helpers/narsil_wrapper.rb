@@ -21,7 +21,7 @@ class NarsilWrapper
       "browser" => create_params[:browser],
       "ip" => create_params[:ip],
       "backtrace" => create_params[:backtrace],
-      "browser" => create_params[:name],
+      "browser" => create_params[:browser],
       "format" => create_params[:format],
       "method" => create_params[:method],
       "headers" => create_params[:headers],
@@ -29,9 +29,9 @@ class NarsilWrapper
       "protocol" => create_params[:protocol],
       "version" => create_params[:version],
       "platform" => create_params[:platform],
-      "bot" => create_params[:bot?],
-      "is_modern" => create_params[:modern?],
-      "browser_meta" => create_params[:user_agent]
+      "bot" => create_params[:bot],
+      "is_modern" => create_params[:is_modern],
+      "browser_meta" => create_params[:browser_meta]
     })
 
     response = http.request(request)

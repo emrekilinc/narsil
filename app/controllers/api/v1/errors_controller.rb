@@ -18,8 +18,7 @@ module Api
           browser: params[:browser],
           ip: params[:ip],
           backtrace: params[:backtrace],
-          backtrace: params[:backtrace],
-          browser: params[:name],
+          browser: params[:browser],
           format: params[:format],
           method: params[:method],
           headers: params[:headers],
@@ -27,10 +26,13 @@ module Api
           protocol: params[:protocol],
           version: params[:version],
           platform: params[:platform],
-          bot: params[:bot?],
-          is_modern: params[:modern?],
-          browser_meta: params[:user_agent]
+          bot: params[:bot],
+          is_modern: params[:is_modern],
+          browser_meta: params[:browser_meta]
         }
+        puts params
+        puts "MF"
+        puts create_params
         error = Error.create(create_params)
 
         if error.valid?
