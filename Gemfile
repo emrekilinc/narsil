@@ -28,3 +28,7 @@ group :development do
 end
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem "browser"
+
+gem 'unicorn'
+gem 'capistrano', '2.15.5'

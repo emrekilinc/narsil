@@ -21,5 +21,6 @@ Narsil::Application.routes.draw do
     end
   end
   
+  get 'somethings-not-right' => 'home#error', as: 'error'
   root 'home#index'
 end

@@ -5,7 +5,7 @@ class NarsilWrapper
   ACCESS_TOKEN = "c55112c8a981bbf118649a7a8a700e71"
 
   def self.log(create_params)
-    uri = URI.parse("http://localhost:5555/api/error")
+    uri = URI.parse("http://dashboard.2nworks.com/api/error")
     http = Net::HTTP.new(uri.host, uri.port)
     token = ActionController::HttpAuthentication::Token.encode_credentials(ACCESS_TOKEN)
     
