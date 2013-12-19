@@ -5,9 +5,9 @@
 @import "app/assets/stylesheets/utils";
 
 body {
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: @font-family;
   margin: 0;
-  padding: 0;
+  padding: 70px 0 0 0;
   text-size-adjust:none;
   font-smoothing: antialiased;
   -webkit-text-size-adjust:none;
@@ -16,7 +16,44 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Roboto", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: @font-family;
+}
+
+.navbar-default {
+  background: @base;
+  border-color: @base;
+
+  .navbar-nav > li > a {
+    color: @light;
+
+    &:hover {
+      color: darken(@light, 10%);
+    }
+  }
+
+  .navbar-nav > .open > a,
+  .navbar-nav > .open > a:focus,
+  .navbar-nav > .active > a,
+  .navbar-nav > .active > a:hover {
+    background-color: lighten(@base, 15%);
+    color: @light;
+  }
+
+  img.avatar {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: @radius;
+    margin-right: 10px;
+  }
+}
+
+.navbar > .container .navbar-brand {
+  color: @light;
+
+  img.logo {
+    height: 20px;
+  }
 }
 
 body.login {
