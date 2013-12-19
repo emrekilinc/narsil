@@ -20,7 +20,18 @@ class NarsilWrapper
       "occured_at" => create_params[:occured_at],
       "browser" => create_params[:browser],
       "ip" => create_params[:ip],
-      "backtrace" => create_params[:backtrace]
+      "backtrace" => create_params[:backtrace],
+      "browser" => create_params[:name],
+      "format" => create_params[:format],
+      "method" => create_params[:method],
+      "headers" => create_params[:headers],
+      "port" => create_params[:port],
+      "protocol" => create_params[:protocol],
+      "version" => create_params[:version],
+      "platform" => create_params[:platform],
+      "bot" => create_params[:bot?],
+      "is_modern" => create_params[:modern?],
+      "browser_meta" => create_params[:user_agent]
     })
 
     response = http.request(request)
