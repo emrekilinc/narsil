@@ -14,7 +14,7 @@ Narsil::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      get 'error/index' => 'errors#index'
+      post 'error' => 'errors#create'
     end
   end
   
