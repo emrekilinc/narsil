@@ -17,7 +17,19 @@ module Api
           occured_at: params[:occured_at],
           browser: params[:browser],
           ip: params[:ip],
-          backtrace: params[:backtrace]
+          backtrace: params[:backtrace],
+          backtrace: params[:backtrace],
+          browser: params[:name],
+          format: params[:format],
+          method: params[:method],
+          headers: params[:headers],
+          port: params[:port],
+          protocol: params[:protocol],
+          version: params[:version],
+          platform: params[:platform],
+          bot: params[:bot?],
+          is_modern: params[:modern?],
+          browser_meta: params[:user_agent]
         }
         error = Error.create(create_params)
 
