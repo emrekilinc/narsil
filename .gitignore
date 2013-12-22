@@ -18,3 +18,5 @@
 
 # Exclude database.yml
 /config/database.yml
+/config/deploy.rb
+/config/recipes
