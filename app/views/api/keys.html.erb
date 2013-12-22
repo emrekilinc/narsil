@@ -38,7 +38,9 @@
     <div class="col-md-4">
       <% if flash[:alert] %>
         <div class="alert alert-danger">
-          <%= flash[:alert].full_messages.to_sentence %>
+          <% if flash[:alert].full_messages %>
+            <%= flash[:alert].full_messages.to_sentence %>
+          <% end %>
         </div>
         <!--/ .alert -->
       <% end %>
