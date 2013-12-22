@@ -10,6 +10,7 @@ Narsil::Application.routes.draw do
   post 'projects/create' => 'project#create'
   get 'projects/:id' => 'project#show'
   get 'projects/edit/:id' => 'project#edit'
+  post 'projects/update' => 'project#update'
 
   get 'errors' => 'error#index'
   get 'error/:id' => 'error#show'

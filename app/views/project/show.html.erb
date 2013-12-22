@@ -1,0 +1,116 @@
+<div class="content">
+  <div class="page-header">
+    <a href="<%= url_for(controller: "project", action: "index") %>" class="btn btn-sm btn-info pull-right"><i class="fa fa-list"></i> Projects</a>
+    
+    <h2><%= @project.name %></h2>
+    <small><%= @project.body %></small>
+  </div>
+  <!--/ .page-header -->
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="tabs-left">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="active"><a href="#information" data-toggle="tab">Information</a></li>
+          <li><a href="#exceptions" data-toggle="tab">Exceptions <span class="badge"><%= @project.error_count %></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <!--/ .col-md-3 -->
+
+    <div class="col-md-9">
+      <div class="tab-content">
+        <div class="tab-pane active" id="information">
+          <table class="table table-bordered table-hover table-striped">
+            <tbody>
+              <tr>
+                <td class="col-md-2"><strong>Name :</strong></td>
+                <td><%= @project.name %></td>
+              </tr>
+              <tr>
+                <td><strong>Body :</strong></td>
+                <td><%= @project.body %></td>
+              </tr>
+
+              <tr>
+                <td><strong>Code :</strong></td>
+                <td><%= @project.code %></td>
+              </tr>
+
+              <tr>
+                <td><strong>Logo :</strong></td>
+                <td>
+                  <a href="<%= @project.logo %>" target="_blank"><i class="fa fa-picture-o"></i></a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Primary Color :</strong></td>
+                <td style="<%= "background-color: #{@project.primary_color}" %>"></td>
+              </tr>
+
+              <tr>
+                <td><strong>Is Active? :</strong></td>
+                <td>
+                  <% if @project.is_active %>
+                    <span class="label label-success">YES</span>
+                  <% else %>
+                    <span class="label label-danger">NO</span>
+                  <% end %>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Body :</strong></td>
+                <td><%= @project.body %></td>
+              </tr>
+
+              <tr>
+                <td><strong>Created At :</strong></td>
+                <td><%= @project.created_at %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--/ .tab-pane -->
+
+        <div class="tab-pane" id="exceptions">
+          <% if @errors.count > 0 %>
+            <table class="table table-bordered table-hover table-striped">
+              <thead>
+                <th>Project</th>
+                <th>Message</th>
+                <th>Occured At</th>
+                <th class="col-md-1"></th>
+              </thead>
+              <tbody>
+                <% @errors.each do |item| %>
+                <tr>
+                  <td><span class="label label-default"><%= item.project_name %></span></td>
+                  <td><%= item.message %></td>
+                  <td><%= item.occured_at %></td>
+                  <td>
+                    <a href="<%= url_for(controller: "error", action: "show", id: item.id) %>" class="btn btn-warning"><i class="fa fa-ellipsis-h"></i></a>
+                  </td>
+                </tr>
+                <% end %>    
+              </tbody>
+            </table>
+          <% else %>
+          <div class="alert alert-info">
+            There are no errors logged, yet.
+          </div>
+          <!--/ .alert -->
+          <% end %>
+
+          <%= will_paginate @errors, renderer: BootstrapPagination::Rails %>
+        </div>
+        <!--/ .tab-pane -->
+      </div>
+    </div>
+    <!--/ .col-md-9 -->
+  </div>
+  <!--/ .row -->
+
+</div>
+<!--/ .content -->

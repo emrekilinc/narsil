@@ -1,0 +1,93 @@
+<div class="content">
+  <div class="page-header">
+    <a href="<%= url_for(controller: "project", action: "index") %>" class="btn btn-sm btn-info pull-right"><i class="fa fa-list"></i> Projects</a>
+    
+    <h2>Edit Project</h2>
+  </div>
+  <!--/ .page-header -->
+
+  <div class="row">
+    <div class="col-md-8">
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <ul>
+            <% flash[:alert].full_messages.each do |item| %>
+              <li><%= item %></li>
+            <% end %>
+          </ul>
+        </div>
+        <!--/ .alert -->
+      <% end %>
+
+      <form role="form" method="post" action="<%= url_for(controller: "project", action: "update") %>">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" class="form-control" id="name" placeholder="" value="<%= @project.name %>">
+        </div>
+        <!--/ .form-group -->
+
+        <div class="form-group">
+          <label for="code">Project Code</label>
+          <input type="text" name="code" class="form-control" id="code" placeholder="" value="<%= @project.code %>">
+          <p class="help-block">This code must be unique for every project. <strong>Narsil</strong> does the exception logging based on this code, so be careful!</p>
+        </div>
+        <!--/ .form-group -->
+
+        <div class="form-group">
+          <label for="body">Description</label>
+          <textarea name="body" id="body" class="form-control" rows="10"><%= @project.body %></textarea>
+        </div>
+        <!--/ .form-group -->
+
+        <div class="form-group">
+          <label for="logo">Logo Path</label>
+          <input type="text" name="logo" class="form-control" id="logo" placeholder="" value="<%= @project.logo %>">
+          <p class="help-block">Right now, we do not allow image uploads for logo, so you should paste the logo url here manually.</p>
+        </div>
+        <!--/ .form-group -->
+
+        <div class="form-group">
+          <label for="primary_color">Primary Color</label>
+          <input type="text" name="primary_color" class="form-control" id="primary_color" placeholder="#333333" value="<%= @project.primary_color %>">
+          <div class="help-block">Set this value for dashboard design. All projects will be color coded with their own values.</div>
+        </div>
+        <!--/ .form-group -->
+
+        <div class="checkbox">
+          <label>
+            <input name="is_active" type="checkbox" <%= "checked=checked" if @project.is_active %>> Is Active?
+          </label>
+          <p class="help-block">Do not check this field if you don't want to show the project in the dashboard.</p>
+        </div>
+        
+        <input type="hidden" name="id" id="id" value="<%= @project.id %>">
+        <button type="submit" class="btn btn-success">Update</button>
+        <%= token_tag(nil) %>
+      </form>
+    </div>
+    <!--/ .col-md-8 -->
+
+    <div class="col-md-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">Creating a project?</div>
+        <div class="panel-body">
+          <p>
+            After creating a project you can immediately start logging exceptions. <strong>Narsil</strong>, will hold every necessary data and report them to you with mail. After creating a project, go to the API/Keys page, grab a key, choose the wraper of your choice, follow the instructions on the help page and start logging exceptions. 
+          </p>
+
+          <p>
+            Not only <strong>Narsil</strong> logs exceptions, but fetches visitor statistics from <a href="http://gaug.es">Gaug.es</a>. So if you know <u>Gauge ID</u>, you can set it in the project and see the visitor statistics real-time.
+          </p>
+
+          <p>
+            <strong>Narsil</strong> has a section called <a href="pe"><i class="fa fa-desktop"></i> TV</a> for viewing everything related to projects in television resolution(1920x1080), especially designed for big screens.
+          </p>
+        </div>
+        <!--/ .panel-body -->
+      </div>
+    </div>
+    <!--/ .col-md-4 -->
+  </div>
+  <!--/ .row -->
+</div>
+<!--/ .content -->
