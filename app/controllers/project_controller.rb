@@ -1,0 +1,38 @@
+class ProjectController < ApplicationController
+  ## GET : '/projects'
+  def index
+    @projects = Project.order("created_at")
+  end
+
+  ## GET : '/projects/new'
+  def new
+  end
+
+  ## POST : '/projects/create'
+  def create
+    create_params = {
+      name: params[:name],
+      body: params[:body],
+      logo: params[:logo],
+      primary_color: params[:primary_color],
+      code: params[:code],
+      is_active: params[:is_active] == "on"
+    }
+
+    project = Project.new(create_params)
+    
+    if project.save
+      flash[:alert] = "Created project successfully."
+      redirect_to controller: "project", action: "index"
+    else
+      flash[:alert] = project.errors if project.errors.count > 0
+      redirect_to controller: "project", action: "new"
+    end
+  end
+
+  ## GET : '/projects/:id'
+  def show
+    @project = Project.find(params[:id])
+    respond_to :html
+  end
+end

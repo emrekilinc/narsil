@@ -1,0 +1,50 @@
+<div class="content">
+  <div class="page-header">
+    <a href="<%= url_for(controller: "project", action: "new") %>" class="btn btn-sm btn-success pull-right"><i class="fa fa-plus"></i> Add New Project</a>
+    
+    <h2>Projects</h2>
+    <small>Here you can find a list of all the projects in the dashboard.</small>
+  </div>
+  <!--/ .page-header -->
+
+  <% if @projects.count > 0 %>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Is Active?</th>
+        <th>Logo</th>
+        <th class="col-md-1">Color</th>
+        <th class="col-md-2"></th>
+      </thead>
+      <tbody>
+        <% @projects.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td>
+            <% if item.is_active %>
+              <span class="label label-success">YES</span>
+            <% else %>
+              <span class="label label-danger">NO</span>
+            <% end %>
+          </td>
+          <td>
+            <a href="<%= item.logo %>" target="_blank"><i class="fa fa-picture-o"></i></a>
+          </td>
+          <td style="<%= "background-color: #{item.primary_color}" %>">
+          </td>
+          <td>
+            <a href="<%= url_for(controller: "project", action: "show", id: item.id) %>" class="btn btn-info"><i class="fa fa-ellipsis-h"></i></a>
+            <a href="<%= url_for(controller: "project", action: "edit", id: item.id) %>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <% end %>    
+      </tbody>
+    </table>
+  <% else %>
+  <div class="alert alert-info">
+    There are no errors logged, yet.
+  </div>
+  <!--/ .alert -->
+  <% end %>
+</div>
+<!--/ .content -->

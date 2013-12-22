@@ -11,6 +11,7 @@ gem 'font-awesome-less'
 gem 'less-rails-bootstrap'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

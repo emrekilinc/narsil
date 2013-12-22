@@ -5,6 +5,12 @@ Narsil::Application.routes.draw do
   post 'login' => 'session#authenticate'
   get 'logout' => 'session#logout'
 
+  get 'projects' => 'project#index'
+  get 'projects/new' => 'project#new'
+  post 'projects/create' => 'project#create'
+  get 'projects/:id' => 'project#show'
+  get 'projects/edit/:id' => 'project#edit'
+
   get 'errors' => 'error#index'
   get 'error/:id' => 'error#show'
 
