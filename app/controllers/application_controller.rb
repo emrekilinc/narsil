@@ -1,7 +1,7 @@
 require 'helpers/narsil_wrapper'
 
 class ApplicationController < ActionController::Base
-  PROJECT_CODE = "SAMPLE_PROJECT_CODE"
+  PROJECT_CODE = "PRJ_TNW_NARSIL"
 
   protect_from_forgery with: :exception
   after_filter :save_current_user_if_dirty, :update_last_activity_at
