@@ -37,11 +37,13 @@ class ProjectController < ApplicationController
     respond_to :html
   end
 
+  ## GET : '/projects/edit/:id'
   def edit
     @project = Project.find(params[:id])
     respond_to :html
   end
 
+  ##POST : '/projects/update'
   def update
     update_params = {
       name: params[:name],
@@ -61,5 +63,12 @@ class ProjectController < ApplicationController
       flash[:alert] = project.errors if project.errors.count > 0
       redirect_to controller: "project", action: "edit", id: project.id
     end
+  end
+
+  ## POST : '/projects/destroy/:id'
+  def destroy
+    project = Project.find(params[:id])
+    project.destroy
+    redirect_to controller: "project", action: "index"
   end
 end

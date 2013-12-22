@@ -1,6 +1,9 @@
 <div class="content">
   <div class="page-header">
-    <a href="<%= url_for(controller: "project", action: "index") %>" class="btn btn-sm btn-info pull-right"><i class="fa fa-list"></i> Projects</a>
+    <p class="pull-right">
+      <%= link_to raw("<i class='fa fa-trash-o'></i>"), url_for(controller: "project", action: "destroy", id: @project.id), method: :post, class: "btn btn-danger btn-sm", confirm: "Are you really sure deleting this project? You should create the same project with same id for getting error reports for this project." %>
+      <a href="<%= url_for(controller: "project", action: "index") %>" class="btn btn-sm btn-info"><i class="fa fa-list"></i> Projects</a>
+    </p>
     
     <h2><%= @project.name %></h2>
     <small><%= @project.body %></small>
