@@ -30,9 +30,6 @@ module Api
           is_modern: params[:is_modern],
           browser_meta: params[:browser_meta]
         }
-        puts params
-        puts "MF"
-        puts create_params
         error = Error.create(create_params)
 
         if error.valid?
