@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   end
 
   def settings
-    asd
+    respond_to :html
   end
 
   def error
